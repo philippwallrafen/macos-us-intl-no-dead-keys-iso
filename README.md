@@ -1,21 +1,50 @@
-# MacOS US International without dead keys
+# macOS US International without dead keys — ISO fixes
 
-After using the US International AltGr layout under unix and [win-us-intl-altgr](https://github.com/thomasfaingnaert/win-us-intl-altgr) under Windows for several years and due switching to MacOS at work, I found that the layout is not available or at least there is nothing comparable.
+A fork of [dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys) with corrected mappings for ISO keyboards.
 
-With the help of [this](http://kbdlayout.info/viewer) I was able to copy every character into [Ukulele](https://software.sil.org/ukelele/) and export it as a key layout.
+The original layout provides a US International keyboard layout for macOS without the usual dead-key behavior.
 
-## Layout
+This fork keeps the original layout intact except for a small set of corrections related to the additional key present on ISO keyboards.
 
-![Layout](./KeyboardLayout.png)
+## Why this fork exists
+
+On ISO keyboards, macOS distinguishes between two physical keys:
+
+- the grave/tilde key
+- the additional ISO `non_us_backslash` key
+
+In the version this fork is based on, both keys were mapped to the same characters:
+
+| Key | Normal | Shift |
+|---|---|---|
+| `non_us_backslash` | `` ` `` | `~` |
+| grave/tilde | `` ` `` | `~` |
+
+This made the ISO key effectively unusable for typing `\` and `|`.
+
+This fork changes the mappings to:
+
+| Key | Normal | Shift |
+|---|---|---|
+| `non_us_backslash` | `\` | `|` |
+| grave/tilde | `` ` `` | `~` |
+
+## Changes
+
+The keyboard layout itself is unchanged apart from the following corrections:
+
+- Map the ISO `non_us_backslash` key to `\`
+- Map Shift + `non_us_backslash` to `|`
+- Apply the corresponding correction to Caps Lock, Option, Command, and Control modifier maps
+- Keep the actual grave/tilde key mapped to `` ` `` and `~`
+- Correct Caps Lock behavior for the grave/tilde key
+- Remove one remaining grave dead-key action from the alternate keyboard map
+
+In total, 12 lines of the original `.keylayout` file were changed.
 
 ## Installation
 
-1. To install the keyboard layout open `Terminal` on your mac and execute the command below.
-```
-curl -sL https://api.github.com/repos/dnnspaul/macos-us-intl-no-dead-keys/tarball/main | sudo tar xz --exclude=README.md --exclude=KeyboardLayout.png --strip=1 -C /Library/Keyboard\ Layouts/
-```
-2. Enter your password. This is required because the keyboard layout is installed for all users on your mac.
-3. Open `System Preferences` -> `Keyboard` -> `Input Sources`
-4. Click `+` and add `US Intl without dead keys` (category `English`) (Note: If the keyboard is not displayed, you may have to restart your device)
-5. Check `☑ Show Input menu in menu bar`.
-6. In the menu bar (top right) select `US Intl without dead keys`.
+Copy the keyboard layout bundle to:
+
+```text
+~/Library/Keyboard Layouts/
