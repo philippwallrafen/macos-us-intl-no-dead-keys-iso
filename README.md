@@ -1,50 +1,61 @@
-# macOS US International without dead keys — ISO fixes
+# macOS US International without dead keys — ISO
 
-A fork of [dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys) with corrected mappings for ISO keyboards.
+A fork of [dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys) with adjusted mappings for ISO keyboards.
 
-The original layout provides a US International keyboard layout for macOS without the usual dead-key behavior.
-
-This fork keeps the original layout intact except for a small set of corrections related to the additional key present on ISO keyboards.
+This fork is based on the current 2025 version of the upstream layout and keeps its updated US International / AltGr mappings.
 
 ## Why this fork exists
 
-On ISO keyboards, macOS distinguishes between two physical keys:
+The upstream layout already distinguishes between the two relevant macOS keycodes, but assigns the grave/tilde and backslash/pipe pairs in the opposite way from the ISO mapping targeted by this fork.
 
-- the grave/tilde key
-- the additional ISO `non_us_backslash` key
-
-In the version this fork is based on, both keys were mapped to the same characters:
+Upstream:
 
 | Key | Normal | Shift |
 |---|---|---|
-| `non_us_backslash` | `` ` `` | `~` |
-| grave/tilde | `` ` `` | `~` |
+| ISO extra key | `` ` `` | `~` |
+| grave/tilde key | `\` | `|` |
 
-This made the ISO key effectively unusable for typing `\` and `|`.
-
-This fork changes the mappings to:
+This fork:
 
 | Key | Normal | Shift |
 |---|---|---|
-| `non_us_backslash` | `\` | `|` |
-| grave/tilde | `` ` `` | `~` |
+| ISO extra key | `\` | `|` |
+| grave/tilde key | `` ` `` | `~` |
+
+The same distinction is applied consistently across the relevant modifier maps.
 
 ## Changes
 
-The keyboard layout itself is unchanged apart from the following corrections:
+Compared with the current upstream layout, this fork:
 
-- Map the ISO `non_us_backslash` key to `\`
-- Map Shift + `non_us_backslash` to `|`
-- Apply the corresponding correction to Caps Lock, Option, Command, and Control modifier maps
-- Keep the actual grave/tilde key mapped to `` ` `` and `~`
-- Correct Caps Lock behavior for the grave/tilde key
-- Remove one remaining grave dead-key action from the alternate keyboard map
+- maps the ISO extra key to `\` and `|`
+- maps the grave/tilde key to `` ` `` and `~`
+- applies the corresponding mappings to Caps Lock, Option, Shift+Option, Option+Command, Control, and Command layers
+- removes one remaining reachable grave dead-key action from the alternate hardware map
+- otherwise preserves the current upstream layout, including its AltGr character mappings and action/state definitions
 
-In total, 12 lines of the original `.keylayout` file were changed.
+The `.keylayout` differs from upstream in 16 targeted mappings.
+
+## AltGr characters
+
+The upstream AltGr mappings are preserved.
+
+Examples:
+
+| Shortcut | Output |
+|---|---|
+| Option+A | `á` |
+| Option+E | `é` |
+| Option+I | `í` |
+| Option+O | `ó` |
+| Option+U | `ú` |
+| Option+N | `ñ` |
 
 ## Installation
 
-Copy the keyboard layout bundle to:
+Download or clone this repository.
+
+Copy:
 
 ```text
-~/Library/Keyboard Layouts/
+US Intl PC without dead keys.bundle
