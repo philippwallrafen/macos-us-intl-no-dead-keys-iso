@@ -2,7 +2,7 @@
 
 # macOS US International — No Dead Keys for ISO Keyboards
 
-US International keyboard layout for **macOS**, with **no dead keys** and corrected mappings for **physical ISO keyboards**.
+A **US International keyboard layout for macOS without dead keys**, designed for **physical ISO keyboards**. Fixes the **backslash/pipe (`\\` / `|`)** and **grave/tilde (`` ` `` / `~`)** keys while preserving **AltGr/Option accented characters**.
 
 ## Installation
 
@@ -11,7 +11,7 @@ Paste this into Terminal:
 ```bash
 tmp="$(mktemp -d)" && \
 curl -fsSL -o "$tmp/layout.zip" \
-  "https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/releases/download/v1.0.0/US-Intl-ISO-v1.0.0.zip" && \
+  "https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/releases/latest/download/US-Intl-ISO.zip" && \
 unzip -q "$tmp/layout.zip" -d "$tmp" && \
 mkdir -p "$HOME/Library/Keyboard Layouts" && \
 rm -rf "$HOME/Library/Keyboard Layouts/US Intl no dead keys ISO.bundle" && \
@@ -22,7 +22,7 @@ open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"
 
 Log out and back in, then select **US Intl no dead keys ISO** in **System Settings → Keyboard → Text Input**.
 
-The installer downloads the fixed `v1.0.0` release rather than the mutable `main` branch.
+The installer downloads the latest stable release rather than the mutable `main` branch.
 
 ## Compatibility
 
