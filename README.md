@@ -6,23 +6,21 @@ US International keyboard layout for **macOS**, with **no dead keys** and correc
 
 ## Installation
 
-Clone the repository:
+Paste this into Terminal:
 
 ```bash
-git clone https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso.git
-cd macos-us-intl-no-dead-keys-iso
+tmp="$(mktemp -d)" && \
+curl -fsSL https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/archive/refs/heads/main.tar.gz | tar -xz -C "$tmp" && \
+mkdir -p "$HOME/Library/Keyboard Layouts" && \
+rm -rf "$HOME/Library/Keyboard Layouts/US Intl PC without dead keys.bundle" && \
+cp -R "$tmp/macos-us-intl-no-dead-keys-iso-main/US Intl PC without dead keys.bundle" "$HOME/Library/Keyboard Layouts/" && \
+rm -rf "$tmp" && \
+open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"
 ```
 
-Install the layout:
+Log out and back in, then select **US Intl without dead keys** in **System Settings → Keyboard → Text Input**.
 
-```bash
-mkdir -p "$HOME/Library/Keyboard Layouts"
-cp -R "US Intl PC without dead keys.bundle" "$HOME/Library/Keyboard Layouts/"
-```
-
-Log out and back in, then enable it in:
-
-**System Settings → Keyboard → Text Input**
+The command installs the latest version and opens Keyboard settings. macOS does not provide a stable supported command-line interface for automatically selecting a newly installed custom keyboard layout.
 
 ## What this fixes
 
