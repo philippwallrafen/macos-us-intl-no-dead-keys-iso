@@ -1,8 +1,8 @@
+![Keyboard layout](KeyboardLayout.png)
+
 # macOS US International — No Dead Keys for ISO Keyboards
 
 US International keyboard layout for **macOS**, with **no dead keys** and corrected mappings for **physical ISO keyboards**.
-
-![Keyboard layout](KeyboardLayout.png)
 
 ## Installation
 
