@@ -1,0 +1,27 @@
+name: Rename v1.0.0 release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/rename-release.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rename release title and asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p /tmp/release
+          gh release download v1.0.0 --pattern "US-Intl-no-dead-keys-ISO-v1.0.0.zip" --dir /tmp/release
+          mv "/tmp/release/US-Intl-no-dead-keys-ISO-v1.0.0.zip" "/tmp/release/US-Intl-ISO-v1.0.0.zip"
+          gh release delete-asset v1.0.0 "US-Intl-no-dead-keys-ISO-v1.0.0.zip" --yes
+          gh release upload v1.0.0 "/tmp/release/US-Intl-ISO-v1.0.0.zip"
+          gh release edit v1.0.0 --title "v1.0.0"
