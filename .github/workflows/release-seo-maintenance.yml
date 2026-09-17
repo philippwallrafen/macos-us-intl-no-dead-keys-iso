@@ -1,0 +1,33 @@
+name: Release SEO maintenance
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/release-seo-maintenance.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rename release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p /tmp/release
+          gh release download v1.0.0 --pattern "US-Intl-ISO-v1.0.0.zip" --dir /tmp/release
+          mv "/tmp/release/US-Intl-ISO-v1.0.0.zip" "/tmp/release/US-Intl-ISO.zip"
+          gh release delete-asset v1.0.0 "US-Intl-ISO-v1.0.0.zip" --yes
+          gh release upload v1.0.0 "/tmp/release/US-Intl-ISO.zip"
+
+      - name: Add repository topics
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh api --method PUT "repos/$GH_REPO/topics"             -f 'names[]=altgr'             -f 'names[]=international-keyboard'             -f 'names[]=iso-keyboard'             -f 'names[]=keyboard'             -f 'names[]=keyboard-layout'             -f 'names[]=keylayout'             -f 'names[]=macos'             -f 'names[]=macos-keyboard'             -f 'names[]=no-dead-keys'             -f 'names[]=us-international'             -f 'names[]=us-international-keyboard'             -f 'names[]=mac-keyboard-layout'
