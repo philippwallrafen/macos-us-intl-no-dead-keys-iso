@@ -11,7 +11,7 @@ Paste this into Terminal:
 ```bash
 tmp="$(mktemp -d)" && \
 curl -fsSL -o "$tmp/layout.zip" \
-  "https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/releases/download/v1.0.0/US-Intl-no-dead-keys-ISO-v1.0.0.zip" && \
+  "https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/releases/download/v1.0.0/US-Intl-ISO-v1.0.0.zip" && \
 unzip -q "$tmp/layout.zip" -d "$tmp" && \
 mkdir -p "$HOME/Library/Keyboard Layouts" && \
 rm -rf "$HOME/Library/Keyboard Layouts/US Intl no dead keys ISO.bundle" && \
