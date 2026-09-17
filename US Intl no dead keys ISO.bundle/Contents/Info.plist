@@ -5,10 +5,12 @@
 	<key>CFBundleIdentifier</key>
 	<string>org.sil.ukelele.keyboardlayout.usintlpcwithoutdeadkeys</string>
 	<key>CFBundleName</key>
-	<string>US Intl PC without dead keys</string>
+	<string>US Intl no dead keys ISO</string>
 	<key>CFBundleVersion</key>
-	<string></string>
-	<key>KLInfo_US Intl without dead keys</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>KLInfo_US Intl no dead keys ISO</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>

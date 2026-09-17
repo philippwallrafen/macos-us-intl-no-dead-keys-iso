@@ -10,17 +10,26 @@ Paste this into Terminal:
 
 ```bash
 tmp="$(mktemp -d)" && \
-curl -fsSL https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/archive/refs/heads/main.tar.gz | tar -xz -C "$tmp" && \
+curl -fsSL -o "$tmp/layout.zip" \
+  "https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso/releases/download/v1.0.0/US-Intl-no-dead-keys-ISO-v1.0.0.zip" && \
+unzip -q "$tmp/layout.zip" -d "$tmp" && \
 mkdir -p "$HOME/Library/Keyboard Layouts" && \
-rm -rf "$HOME/Library/Keyboard Layouts/US Intl PC without dead keys.bundle" && \
-cp -R "$tmp/macos-us-intl-no-dead-keys-iso-main/US Intl PC without dead keys.bundle" "$HOME/Library/Keyboard Layouts/" && \
+rm -rf "$HOME/Library/Keyboard Layouts/US Intl no dead keys ISO.bundle" && \
+cp -R "$tmp/US Intl no dead keys ISO.bundle" "$HOME/Library/Keyboard Layouts/" && \
 rm -rf "$tmp" && \
 open "x-apple.systempreferences:com.apple.Keyboard-Settings.extension"
 ```
 
-Log out and back in, then select **US Intl without dead keys** in **System Settings → Keyboard → Text Input**.
+Log out and back in, then select **US Intl no dead keys ISO** in **System Settings → Keyboard → Text Input**.
 
-The command installs the latest version and opens Keyboard settings. macOS does not provide a stable supported command-line interface for automatically selecting a newly installed custom keyboard layout.
+The installer downloads the fixed `v1.0.0` release rather than the mutable `main` branch.
+
+## Compatibility
+
+- macOS
+- physical ISO keyboards
+- ANSI and JIS keyboards are not the target
+- exact macOS version coverage depends on tested and reported hardware
 
 ## What this fixes
 
@@ -52,6 +61,10 @@ The upstream US International mappings are preserved.
 - physical ISO keyboards
 - US International users
 - users who want accented characters without dead keys
+
+## License
+
+MIT
 
 ## Upstream
 
