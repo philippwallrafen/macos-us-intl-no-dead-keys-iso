@@ -1,46 +1,43 @@
-# macOS US International without dead keys — ISO
+# macOS US International — No Dead Keys for ISO Keyboards
 
-A fork of [dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys) with adjusted mappings for ISO keyboards.
+US International keyboard layout for **macOS**, with **no dead keys** and corrected mappings for **physical ISO keyboards**.
 
-This fork is based on the current 2025 version of the upstream layout and keeps its updated US International / AltGr mappings.
+![Keyboard layout](KeyboardLayout.png)
 
-## Why this fork exists
+## Installation
 
-The upstream layout already distinguishes between the two relevant macOS keycodes, but assigns the grave/tilde and backslash/pipe pairs in the opposite way from the ISO mapping targeted by this fork.
+Clone the repository:
 
-Upstream:
+```bash
+git clone https://github.com/philippwallrafen/macos-us-intl-no-dead-keys-iso.git
+cd macos-us-intl-no-dead-keys-iso
+```
 
-| Key | Normal | Shift |
-|---|---|---|
-| ISO extra key | `` ` `` | `~` |
-| grave/tilde key | `\` | `|` |
+Install the layout:
 
-This fork:
+```bash
+mkdir -p "$HOME/Library/Keyboard Layouts"
+cp -R "US Intl PC without dead keys.bundle" "$HOME/Library/Keyboard Layouts/"
+```
 
-| Key | Normal | Shift |
-|---|---|---|
-| ISO extra key | `\` | `|` |
-| grave/tilde key | `` ` `` | `~` |
+Log out and back in, then enable it in:
 
-The same distinction is applied consistently across the relevant modifier maps.
+**System Settings → Keyboard → Text Input**
 
-## Changes
+## What this fixes
 
-Compared with the current upstream layout, this fork:
+This project is based on [dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys), but adjusts the two keys that differ on ISO keyboards.
 
-- maps the ISO extra key to `\` and `|`
-- maps the grave/tilde key to `` ` `` and `~`
-- applies the corresponding mappings to Caps Lock, Option, Shift+Option, Option+Command, Control, and Command layers
-- removes one remaining reachable grave dead-key action from the alternate hardware map
-- otherwise preserves the current upstream layout, including its AltGr character mappings and action/state definitions
+| Key | This layout |
+|---|---|
+| ISO extra key | `\` / `|` |
+| Grave/tilde key | `` ` `` / `~` |
 
-The `.keylayout` differs from upstream in 16 targeted mappings.
+The corrected mapping is applied across the relevant modifier layers.
 
-## AltGr characters
+## AltGr / Option
 
-The upstream AltGr mappings are preserved.
-
-Examples:
+The upstream US International mappings are preserved.
 
 | Shortcut | Output |
 |---|---|
@@ -51,11 +48,13 @@ Examples:
 | Option+U | `ú` |
 | Option+N | `ñ` |
 
-## Installation
+## Intended for
 
-Download or clone this repository.
+- macOS
+- physical ISO keyboards
+- US International users
+- users who want accented characters without dead keys
 
-Copy:
+## Upstream
 
-```text
-US Intl PC without dead keys.bundle
+[dnnspaul/macos-us-intl-no-dead-keys](https://github.com/dnnspaul/macos-us-intl-no-dead-keys)
